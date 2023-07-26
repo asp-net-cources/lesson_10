@@ -9,9 +9,9 @@ public class ProductController : ControllerBase
 {
     private static readonly List<Product> _products = new()
     {
-        new() { Name = "Молоко", Description = "Простоквашино", Count = 100 },
-        new() { Name = "Часы", Description = "Ролекс", Count = 1 },
-        new() { Name = "Книга", Description = "Властелин колец", Count = 10 }
+        new Food() { Name = "Молоко", Description = "Простоквашино", Count = 100 },
+        new Accessories() { Name = "Часы", Description = "Ролекс", Count = 1 },
+        new Book() { Name = "Книга", Description = "Властелин колец", Count = 10 }
     };
     
     [HttpGet("{id}")]
@@ -25,5 +25,14 @@ public class ProductController : ControllerBase
     {
         _products[id] = updatedProduct;
         return _products[id];
+    }
+
+    [HttpPost("create-product")]
+    public Product? CreateProduct([FromBody] Product createdProduct) {
+        if (createdProduct == null) {
+            return null;
+        }
+        _products.Add(createdProduct);
+        return createdProduct;
     }
 }

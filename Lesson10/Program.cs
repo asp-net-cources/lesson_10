@@ -1,13 +1,21 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Lesson10.JsonSettings.Converters;
+using Lesson10.JsonSettings.Policies;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews()
-    .AddRazorRuntimeCompilation();
-    
+    .AddRazorRuntimeCompilation()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.PropertyNamingPolicy = new UpperCaseNamingPolicy();
+        options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.AllowNamedFloatingPointLiterals;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.Converters.Add(new DateTimeJsonConverter());
+        options.JsonSerializerOptions.Converters.Add(new ProductJsonConverter());
+    });
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

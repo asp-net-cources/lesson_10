@@ -12,9 +12,9 @@ public class HomeController : Controller
 
     private static readonly List<Product> _products = new()
     {
-        new() { Name = "Молоко", Description = "Простоквашино", Count = 100 },
-        new() { Name = "Часы", Description = "Ролекс", Count = 1 },
-        new() { Name = "Книга", Description = "Властелин колец", Count = 10 }
+        new Food() { Name = "Молоко", Description = "Простоквашино", Count = 100 },
+        new Accessories() { Name = "Часы", Description = "Ролекс", Count = 1 },
+        new Book() { Name = "Книга", Description = "Властелин колец", Count = 10 }
     };
     
     public HomeController(ILogger<HomeController> logger)
