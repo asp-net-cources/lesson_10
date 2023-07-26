@@ -10,12 +10,7 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    private static readonly List<Product> _products = new()
-    {
-        new Food() { Name = "Молоко", Description = "Простоквашино", Count = 100 },
-        new Accessories() { Name = "Часы", Description = "Ролекс", Count = 1 },
-        new Book() { Name = "Книга", Description = "Властелин колец", Count = 10 }
-    };
+    private static List<Product> _products => ProductController.Products;
     
     public HomeController(ILogger<HomeController> logger)
     {
