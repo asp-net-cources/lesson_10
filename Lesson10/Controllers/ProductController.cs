@@ -7,7 +7,7 @@ namespace Lesson10.Controllers;
 [Route("[controller]")]
 public class ProductController : ControllerBase
 {
-    private static readonly List<Product> _products = new()
+    public static readonly List<Product> Products = new()
     {
         new() { Name = "Молоко", Description = "Простоквашино", Count = 100 },
         new() { Name = "Часы", Description = "Ролекс", Count = 1 },
@@ -17,13 +17,13 @@ public class ProductController : ControllerBase
     [HttpGet("{id}")]
     public Product GetProduct([FromRoute]int id)
     {
-        return _products[id];
+        return Products[id];
     }
     
     [HttpPost("{id}")]
     public Product UpdateProduct([FromRoute]int id, [FromBody] Product updatedProduct)
     {
-        _products[id] = updatedProduct;
-        return _products[id];
+        Products[id] = updatedProduct;
+        return Products[id];
     }
 }
