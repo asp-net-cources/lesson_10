@@ -32,7 +32,7 @@ public class ProductController : ControllerBase
         if (createdProduct == null) {
             return null;
         }
-        _products.Add(createdProduct);
+        Products.Add(createdProduct);
         return createdProduct;
     }
 }
